@@ -27,7 +27,20 @@ https://templatemo.com/tm-545-finance-business
 -->
   <script type="text/javascript">
   window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a);for(var n=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],o=0;o<p.length;o++)heap[p[o]]=n(p[o])};
-  heap.load("3716786237");
+  heap.load("3716786237", {
+      rewrite: function(props) {{
+        if (props.pageview_properties.path) {
+          props.pageview_properties.path = "REDACTED_PATH"
+        }
+        if (props.pageview_properties.title) {
+          props.pageview_properties.title = "This is an odd About Page"
+        }
+        if (props.event_properties.target_text) {
+          props.event_properties.target_text = "CheeseHeap"
+        }}
+        return props
+      }
+    });
   </script>
   <script type="text/javascript">
   heap.track('Onboarding Event', {indexpage: false, pagenumber: 1, pagename: 'About'});
@@ -83,7 +96,7 @@ https://templatemo.com/tm-545-finance-business
                 </a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="about.html">About Us</a>
+                <a class="nav-link" href="about.html">THIS PAGEVIEW REDACTS THE CAPTURING OF THE PATH PROPERTY AND PUTS ANOTHER VALUE IN THE TITLE PROPERTY. ON THIS PAGE ALL TARGET TEXT IS REPLACED WITH "CHEESEHEAP"</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="services.html">Our Services</a>
